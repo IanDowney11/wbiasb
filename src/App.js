@@ -20,10 +20,12 @@ import CallReceivedTwoToneIcon from '@mui/icons-material/CallReceivedTwoTone';
 import SendToMobileTwoToneIcon from '@mui/icons-material/SendToMobileTwoTone';
 import CurrencyBitcoinTwoToneIcon from '@mui/icons-material/CurrencyBitcoinTwoTone';
 import LiveHelpTwoToneIcon from '@mui/icons-material/LiveHelpTwoTone';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import About from './components/About.js';
 import Send from './components/Send.js';
 import Receive from './components/Receive.js';
 import BTCPrice from './components/BTCPrice.js';
+import Home from './components/Home.js';
 
 
 const drawerWidth = 240;
@@ -82,7 +84,7 @@ export default function MainContent(props){
   //  }
 
   //}  
-  const [page, setPage] = React.useState(false);
+  const [page, setPage] = React.useState('Home');
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -139,6 +141,16 @@ export default function MainContent(props){
           <Divider />
           <List>
   
+
+          <ListItem key={'Home'} disablePadding>
+                <ListItemButton onClick={() => handleSetPage('Home')}>
+                  <ListItemIcon>
+                    {<HomeTwoToneIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={'Home'} />
+                </ListItemButton>
+              </ListItem>
+
           <ListItem key={'Send'} disablePadding>
                 <ListItemButton onClick={() => handleSetPage('Send')}>
                   <ListItemIcon>
@@ -180,6 +192,7 @@ export default function MainContent(props){
         <Main open={open}>
           <DrawerHeader />
           <div>
+            {page === 'Home' ? <Home /> : null} 
             {page === 'Send' ? <Send /> : null}
             {page === 'Receive' ? <Receive /> : null}
             {page === 'BTCPrice' ? <BTCPrice /> : null}
